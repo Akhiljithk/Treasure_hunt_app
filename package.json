@@ -1,0 +1,25 @@
+{
+  "name": "treasure-hunt-event",
+  "version": "0.0.0",
+  "private": true,
+  "main": "app.js",
+  "engines": {
+    "node": "14.11.0"
+  },
+  "scripts": {
+    "start": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "@handlebars/allow-prototype-access": "^1.0.5",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "express-handlebars": "^5.3.1",
+    "handlebars": "^4.7.7",
+    "hbs": "^4.1.2",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "nodemon": "^2.0.7"
+  }
+}
