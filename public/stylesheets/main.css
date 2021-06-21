@@ -191,6 +191,12 @@ body{
   background: #302e57;
   border-radius: 3px;
 }
+.playerInput-clue{
+  width: 624px;
+  height: 380px;
+  background: #302e57;
+  border-radius: 3px;
+}
 input{
   outline: none;
   border: none;
