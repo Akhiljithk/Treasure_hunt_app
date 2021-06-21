@@ -12,7 +12,7 @@ var adminRouter = require('./routes/admin');
 var playerRouter = require('./routes/player');
 
 var app = express();
-var PORT = process.env.PORT || 5000;
+var PORT = process.env.PORT || 80;
 app.listen(PORT,()=>{
   console.log("app is listening at port", PORT)
 })
