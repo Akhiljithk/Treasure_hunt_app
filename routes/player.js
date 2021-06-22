@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
+var teamHelper=require('../helpers/team-helper');
 
 function verifyTeam(Id){
   var isTeamId=false;
-  let VarifyteamId=Id.toLowerCase();
-  switch (VarifyteamId) {
+  switch (Id) {
     case "team01":
       isTeamId=true;
       break;
@@ -22,6 +22,24 @@ function verifyTeam(Id){
   return isTeamId;
 }
 
+function createTeam(teamId){
+  let teamDetails={}
+  //teamId
+  teamDetails.teamId=teamId;
+  //current clue number for leaderboard
+  teamDetails.currentClue=1;
+  // array for track user
+  passedAnswers=[]
+  datePassed = new Date();
+  let time=datePassed.getHours() + ":" + datePassed.getMinutes() + ":" + datePassed.getSeconds();
+  passedAnswers[0]={
+    time: time,
+    clueNo: 1,
+  }
+  teamDetails.passedAnswers=passedAnswers;
+  return teamDetails;
+}
+
 /* GET users listing. */
 router.get('/', function(req, res) {
   res.render('player/play-zone');
@@ -29,12 +47,22 @@ router.get('/', function(req, res) {
 router.post('/clue', function(req, res) {
   let data = req.body
   var teamId=data.teamId
+  teamId=teamId.toLowerCase();
   if (verifyTeam(teamId)) {
     var answer=data.answer
     answer=answer.toLowerCase();
     switch(answer) {
       case "x":
-        res.render('clues/TW1Qzgzlx0h')
+        isTeam=teamHelper.getTeamDetails(teamId).then((result)=>{
+          if(result){
+            console.log("already saved team");
+            res.render('clues/TW1Qzgzlx0h',{msg:"You've already completed clue 1"})
+          }else{
+            teamDetails=createTeam(teamId)
+            console.log(teamDetails);
+            res.render('clues/TW1Qzgzlx0h')
+          }
+        })
         break;
       case "y":
         res.render('clues/TW1Qzgzlx0')

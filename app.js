@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const Handlebars = require('handlebars');
 var hbs = require('express-handlebars');
+const db = require('./config/dbConnection');
 
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
 
@@ -33,6 +34,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//data base connection
+db.connect(function(err){
+  if(err) console.log("db connection error"+err);
+  else
+  console.log("Database connected successfuly")
+});
 
 app.use('/admin', adminRouter);
 app.use('/', playerRouter);
