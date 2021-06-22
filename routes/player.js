@@ -12,9 +12,11 @@ function verifyTeam(Id){
       isTeamId=true;
       break;
     case "team03":
-      isTeamId=true; 
+      isTeamId=true;
+      break; 
     case "team04":
-      isTeamId=true; 
+      isTeamId=true;
+      break; 
     default:
       isTeamId=false;
       break;
@@ -54,6 +56,27 @@ function updateTeam(clueNo,passedAnswers){
   return teamDetails;
 }
 
+function isCompletePrevClues(result,thisClueNo) {
+  if (result===null) {
+    return false
+  } else {
+    if (result.currentClue==thisClueNo) {
+      return true
+    } else {
+      if (result.currentClue>thisClueNo) {
+        return true
+      } else {
+        thisClueNo=thisClueNo-1;
+        if (result.currentClue==thisClueNo) {
+          return true
+        } else {
+          return false
+        }
+      }
+    }
+  }
+}
+
 /* GET users listing. */
 router.get('/', function(req, res) {
   res.render('player/play-zone');
@@ -80,27 +103,35 @@ router.post('/clue', function(req, res) {
         break;
       case "y":
         teamHelper.getTeamDetails(teamId).then((result)=>{
-          if(result.currentClue==2){
-            res.render('clues/TW1Qzgzlx0',{msg:"Already completed clue 2"})
-          }else{
-            passedAnswers=result.passedAnswers
-            teamDetails=updateTeam(2,passedAnswers)
-            teamHelper.updateTeam(teamId,teamDetails).then((result)=>{
-              res.render('clues/TW1Qzgzlx0')
-            })
+          if (isCompletePrevClues(result,2)) {
+            if(result.currentClue==2){
+              res.render('clues/TW1Qzgzlx0',{msg:"Already completed clue 2"})
+            }else{
+              passedAnswers=result.passedAnswers
+              teamDetails=updateTeam(2,passedAnswers)
+              teamHelper.updateTeam(teamId,teamDetails).then((result)=>{
+                res.render('clues/TW1Qzgzlx0')
+              })
+            }
+          } else {
+            res.render('player/play-zone',{error:"Malpractice detected!"})
           }
         })
         break;
       case "x y z":
         teamHelper.getTeamDetails(teamId).then((result)=>{
-          if(result.currentClue==3){
-            res.render('clues/TW1Qzgzlx0rt',{msg:"Already completed clue 3"})
-          }else{
-            passedAnswers=result.passedAnswers
-            teamDetails=updateTeam(3,passedAnswers)
-            teamHelper.updateTeam(teamId,teamDetails).then((result)=>{
-              res.render('clues/TW1Qzgzlx0rt')
-            })
+          if (isCompletePrevClues(result,2)) {
+            if(result.currentClue==3){
+              res.render('clues/TW1Qzgzlx0rt',{msg:"Already completed clue 3"})
+            }else{
+              passedAnswers=result.passedAnswers
+              teamDetails=updateTeam(3,passedAnswers)
+              teamHelper.updateTeam(teamId,teamDetails).then((result)=>{
+                res.render('clues/TW1Qzgzlx0rt')
+              })
+            }
+          } else {
+            res.render('player/play-zone',{error:"Malpractice detected!"})
           }
         })
         break;
@@ -111,19 +142,35 @@ router.post('/clue', function(req, res) {
     res.render('player/play-zone',{error:"Wrong Team Id!"})
   }
 });
+
 router.get('/leaderboard', function(req, res) {
   teamHelper.getAllTeamData().then((TeamData)=>{
     TeamData.sort((a,b)=>{
       return a.currentClue - b.currentClue
      })
+     TeamData.reverse();
      var i = 1
      TeamData.forEach(element => {
       element.index=i
       i++;
     });
-     console.log(TeamData);
     res.render('partials/leaderboard',{layout: false,TeamData});
   })
 });
+
+router.get('/isteadmin', function(req, res) {
+  teamHelper.getAllTeamData().then((TeamData)=>{
+    TeamData.sort((a,b)=>{
+      return a.currentClue - b.currentClue
+     })
+     TeamData.reverse();
+     var i = 1
+     TeamData.forEach(element => {
+      element.index=i
+      i++;
+    });
+    res.json(TeamData);
+  })
+})
 
 module.exports = router;
