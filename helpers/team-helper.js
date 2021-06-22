@@ -47,4 +47,11 @@ module.exports={
         })
     },
 
+    getAllTeamData:()=>{
+        return new Promise(async(resolve,reject)=>{
+           let TeamData=await db.get().collection('Teams').find().toArray()
+           resolve(TeamData)
+        });
+    },
+
 }

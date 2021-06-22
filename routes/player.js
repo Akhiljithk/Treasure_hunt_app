@@ -112,7 +112,18 @@ router.post('/clue', function(req, res) {
   }
 });
 router.get('/leaderboard', function(req, res) {
-  res.render('partials/leaderboard',{layout: false});
+  teamHelper.getAllTeamData().then((TeamData)=>{
+    TeamData.sort((a,b)=>{
+      return a.currentClue - b.currentClue
+     })
+     var i = 1
+     TeamData.forEach(element => {
+      element.index=i
+      i++;
+    });
+     console.log(TeamData);
+    res.render('partials/leaderboard',{layout: false,TeamData});
+  })
 });
 
 module.exports = router;
