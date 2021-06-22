@@ -40,6 +40,20 @@ function createTeam(teamId){
   return teamDetails;
 }
 
+function updateTeam(clueNo,passedAnswers){
+  let teamDetails={}
+  teamDetails.currentClue=clueNo;
+  datePassed = new Date();
+  let time=datePassed.getHours() + ":" + datePassed.getMinutes() + ":" + datePassed.getSeconds();
+  trackingData={
+    time: time,
+    clueNo: clueNo,
+  }
+  passedAnswers.unshift(trackingData);
+  teamDetails.passedAnswers=passedAnswers;
+  return teamDetails;
+}
+
 /* GET users listing. */
 router.get('/', function(req, res) {
   res.render('player/play-zone');
@@ -53,22 +67,42 @@ router.post('/clue', function(req, res) {
     answer=answer.toLowerCase();
     switch(answer) {
       case "x":
-        isTeam=teamHelper.getTeamDetails(teamId).then((result)=>{
+        teamHelper.isTeam(teamId).then((result)=>{
           if(result){
-            console.log("already saved team");
             res.render('clues/TW1Qzgzlx0h',{msg:"You've already completed clue 1"})
           }else{
             teamDetails=createTeam(teamId)
-            console.log(teamDetails);
-            res.render('clues/TW1Qzgzlx0h')
+            teamHelper.addTeam(teamDetails).then((data)=>{
+              res.render('clues/TW1Qzgzlx0h')
+            })
           }
         })
         break;
       case "y":
-        res.render('clues/TW1Qzgzlx0')
+        teamHelper.getTeamDetails(teamId).then((result)=>{
+          if(result.currentClue==2){
+            res.render('clues/TW1Qzgzlx0',{msg:"Already completed clue 2"})
+          }else{
+            passedAnswers=result.passedAnswers
+            teamDetails=updateTeam(2,passedAnswers)
+            teamHelper.updateTeam(teamId,teamDetails).then((result)=>{
+              res.render('clues/TW1Qzgzlx0')
+            })
+          }
+        })
         break;
       case "x y z":
-        res.render('clues/TW1Qzgzlx0rt')
+        teamHelper.getTeamDetails(teamId).then((result)=>{
+          if(result.currentClue==3){
+            res.render('clues/TW1Qzgzlx0rt',{msg:"Already completed clue 3"})
+          }else{
+            passedAnswers=result.passedAnswers
+            teamDetails=updateTeam(3,passedAnswers)
+            teamHelper.updateTeam(teamId,teamDetails).then((result)=>{
+              res.render('clues/TW1Qzgzlx0rt')
+            })
+          }
+        })
         break;
       default:
         res.render('player/play-zone',{error:"Wrong answer!"})

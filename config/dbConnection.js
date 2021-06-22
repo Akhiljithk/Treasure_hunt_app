@@ -5,7 +5,8 @@ const state={
 }
 
 module.exports.connect=function(done){
-    const url = 'mongodb+srv://TreasureHunt:TreasureHuntPassword@cluster0.psrtx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+    //const url = 'mongodb+srv://TreasureHunt:TreasureHuntPassword@cluster0.psrtx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+    const url = 'mongodb://localhost:27017';
     const dbName = 'treasurehunt'; 
  
     return new Promise(async(resolve,reject)=>{

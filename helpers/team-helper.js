@@ -3,7 +3,7 @@ var objectId=require('mongodb').ObjectID
 
 module.exports={
 
-    getTeamDetails:(teamId)=>{
+    isTeam:(teamId)=>{
         return new Promise((resolve,reject)=>{
             db.get().collection('Teams').findOne({teamId:teamId}).then((teamData)=>{
                 if(teamData){
@@ -17,10 +17,10 @@ module.exports={
         })
     },
 
-    addTeam:(data,callBack)=>{
+    addTeam:(data)=>{
         return new Promise(async(resolve,reject)=>{
             await db.get().collection('Teams').insertOne(data).then((data)=>{
-                callBack(data.ops[0]._id)
+                resolve(data.ops[0])
             })
         })
     },
@@ -30,12 +30,21 @@ module.exports={
             db.get().collection('Teams')
             .updateOne({teamId:teamId},{
                 $set:{
-                    Name:teamDetails.Name,
+                    currentClue:teamDetails.currentClue,
+                    passedAnswers:passedAnswers
                 }
             }).then((response)=>{
                 resolve(response)
             })
         })
-    }
+    },
+
+    getTeamDetails:(teamId)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection('Teams').findOne({teamId:teamId}).then((teamData)=>{
+                resolve(teamData)
+            })
+        })
+    },
 
 }
