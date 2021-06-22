@@ -158,7 +158,7 @@ router.get('/leaderboard', function(req, res) {
   })
 });
 
-router.get('/isteadmin', function(req, res) {
+router.get('/***', function(req, res) {
   teamHelper.getAllTeamData().then((TeamData)=>{
     TeamData.sort((a,b)=>{
       return a.currentClue - b.currentClue
@@ -169,7 +169,7 @@ router.get('/isteadmin', function(req, res) {
       element.index=i
       i++;
     });
-    res.json(TeamData);
+    res.render('admin/playerTracker',{TeamData});
   })
 })
 

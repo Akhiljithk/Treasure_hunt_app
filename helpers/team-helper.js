@@ -54,4 +54,12 @@ module.exports={
         });
     },
 
+    getOneTeamData:(teamId)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection('Teams').findOne({teamId:teamId}).then((teamData)=>{
+                resolve(teamData);
+            })
+        })
+    },
+
 }
