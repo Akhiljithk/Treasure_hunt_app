@@ -2,7 +2,7 @@
     <div class="row justify-content-center text-center">
         <h3 class="col-12">WELCOME TO ISTE ADMIN PANEL</h3>
         <h1 class="col-12 interitus-text mt-3">INTERITUS</h1>
-        <a class="col-12 caption" style="color: #ff4655; cursor: pointer;">Back</a>
+        <a href="/" class="col-12 caption" style="color: #ff4655; cursor: pointer;">Back</a>
     </div>
 </div>
 
@@ -16,10 +16,10 @@
                     aria-controls="collapseExample" class="btn btn-danger m-2">{{this.teamId}}</a>
           
                 <div class="collapse" id="{{this.teamId}}" style="overflow-y: scroll;">
-                    <div class="card card-body" style="color: #ff4655; height: 200px;">
-                        <p class="m-0 p-0">They are trying clue {{this.currentClue}}</p>
+                    <div class="m-2" style="height: 200px;">
+                        <p class="m-0 p-0" style="color: #f1e20b;">They are now trying clue {{this.currentClue}}</p>
                         {{#each this.passedAnswers}}
-                        <p class="m-0 p-0">Reached clue {{this.clueNo}} at <span class="ml-2">{{this.time}}</span></p> 
+                        <p class="m-0 p-0" style="color: #ff4655; ">Reached clue {{this.clueNo}} at <span class="ml-2">{{this.time}}</span></p> 
                         {{/each}}
                     </div>
                 </div>

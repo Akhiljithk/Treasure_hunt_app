@@ -235,11 +235,21 @@ input{
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #27253b; 
+  background: #2b2942; 
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #27253b; 
+  background: #ff4655; 
+}
+
+::-moz-selection { /* Code for Firefox */
+  color: rgb(255, 255, 255);
+  background: #ff4655;
+}
+
+::selection {
+  color: rgb(255, 255, 255);
+  background: #ff4655;
 }
