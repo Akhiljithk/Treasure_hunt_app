@@ -16,11 +16,15 @@
                     aria-controls="collapseExample" class="btn btn-danger m-2">{{this.teamId}}</a>
           
                 <div class="collapse" id="{{this.teamId}}" style="overflow-y: scroll;">
-                    <div class="m-2" style="height: 200px;">
-                        <p class="m-0 p-0" style="color: #f1e20b;">They are now trying clue {{this.currentClue}}</p>
+                    <div class="m-0" style="height: 200px;">
+                        <p class="m-1 p-0" style="color: #f1e20b;"><i class="fa fa-running"></i> They are trying clue {{this.currentClue}} now</p>
+                        <ul class="list-group">
                         {{#each this.passedAnswers}}
-                        <p class="m-0 p-0" style="color: #ff4655; ">Reached clue {{this.clueNo}} at <span class="ml-2">{{this.time}}</span></p> 
+                        <li class="list-group-item" style="background: #121125;">
+                        <p class="mb-0 p-0" style="color: #ff4655; "><i class="fa fa-check-circle"></i> Cracked clue {{this.clueNo}} at <span class="ml-2">{{this.time}}</span></p> 
+                        </li>
                         {{/each}}
+                        </ul>
                     </div>
                 </div>
                 {{/each}}

@@ -120,7 +120,7 @@ router.post('/clue', function(req, res) {
         break;
       case "x y z":
         teamHelper.getTeamDetails(teamId).then((result)=>{
-          if (isCompletePrevClues(result,2)) {
+          if (isCompletePrevClues(result,3)) {
             if(result.currentClue==3){
               res.render('clues/TW1Qzgzlx0rt',{msg:"Already completed clue 3"})
             }else{
@@ -171,6 +171,10 @@ router.get('/***', function(req, res) {
     });
     res.render('admin/playerTracker',{TeamData});
   })
+})
+
+router.get('/player-progress', function(req, res) {
+    res.render('player/player-progress');
 })
 
 module.exports = router;
