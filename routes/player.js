@@ -158,7 +158,7 @@ router.get('/leaderboard', function(req, res) {
   })
 });
 
-router.get('/***', function(req, res) {
+router.get('/track', function(req, res) {
   teamHelper.getAllTeamData().then((TeamData)=>{
     TeamData.sort((a,b)=>{
       return a.currentClue - b.currentClue
