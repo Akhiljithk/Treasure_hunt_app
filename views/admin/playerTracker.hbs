@@ -17,7 +17,11 @@
           
                 <div class="collapse" id="{{this.teamId}}" style="overflow-y: scroll;">
                     <div class="m-0" style="max-height: 200px;">
+                        {{#if this.atTreasure}}
+                        <p class="m-1 p-0" style="color: #1ef10b;"><i class="fa fa-gem"></i> They got the treasure at {{this.treasureTime}}</p>
+                        {{else}}
                         <p class="m-1 p-0" style="color: #f1e20b;"><i class="fa fa-running"></i> They are trying clue {{this.currentClue}} now</p>
+                        {{/if}}
                         <ul class="list-group">
                         {{#each this.passedAnswers}}
                         <li class="list-group-item" style="background: #121125;">

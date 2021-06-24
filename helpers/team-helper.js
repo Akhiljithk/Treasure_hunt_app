@@ -31,7 +31,9 @@ module.exports={
             .updateOne({teamId:teamId},{
                 $set:{
                     currentClue:teamDetails.currentClue,
-                    passedAnswers:passedAnswers
+                    passedAnswers:passedAnswers,
+                    atTreasure:teamDetails.atTreasure,
+                    treasureTime:teamDetails.treasureTime,
                 }
             }).then((response)=>{
                 resolve(response)

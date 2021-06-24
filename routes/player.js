@@ -29,7 +29,7 @@ function createTeam(teamId){
   //teamId
   teamDetails.teamId=teamId;
   //current clue number for leaderboard
-  teamDetails.currentClue=1;
+  teamDetails.currentClue=2;
   // array for track user
   passedAnswers=[]
   datePassed = new Date();
@@ -49,7 +49,7 @@ function updateTeam(clueNo,passedAnswers){
   let time=datePassed.getHours() + ":" + datePassed.getMinutes() + ":" + datePassed.getSeconds();
   trackingData={
     time: time,
-    clueNo: clueNo,
+    clueNo: clueNo-1,
   }
   passedAnswers.unshift(trackingData);
   teamDetails.passedAnswers=passedAnswers;
@@ -103,12 +103,12 @@ router.post('/clue', function(req, res) {
         break;
       case "y":
         teamHelper.getTeamDetails(teamId).then((result)=>{
-          if (isCompletePrevClues(result,2)) {
-            if(result.currentClue==2){
+          if (isCompletePrevClues(result,3)) {
+            if(result.currentClue==3){
               res.render('clues/TW1Qzgzlx0',{msg:"Already completed clue 2"})
             }else{
               passedAnswers=result.passedAnswers
-              teamDetails=updateTeam(2,passedAnswers)
+              teamDetails=updateTeam(3,passedAnswers)
               teamHelper.updateTeam(teamId,teamDetails).then((result)=>{
                 res.render('clues/TW1Qzgzlx0')
               })
@@ -120,12 +120,12 @@ router.post('/clue', function(req, res) {
         break;
       case "x y z":
         teamHelper.getTeamDetails(teamId).then((result)=>{
-          if (isCompletePrevClues(result,3)) {
-            if(result.currentClue==3){
+          if (isCompletePrevClues(result,4)) {
+            if(result.currentClue==4){
               res.render('clues/TW1Qzgzlx0rt',{msg:"Already completed clue 3"})
             }else{
               passedAnswers=result.passedAnswers
-              teamDetails=updateTeam(3,passedAnswers)
+              teamDetails=updateTeam(4,passedAnswers)
               teamHelper.updateTeam(teamId,teamDetails).then((result)=>{
                 res.render('clues/TW1Qzgzlx0rt')
               })
@@ -137,12 +137,17 @@ router.post('/clue', function(req, res) {
         break;
       case "final answer":
         teamHelper.getTeamDetails(teamId).then((result)=>{
-          if (isCompletePrevClues(result,4)) {
-            if(result.currentClue==4){
+          if (isCompletePrevClues(result,5)) {
+            if(result.currentClue==5){
               res.render('clues/treasure')
             }else{
-              passedAnswers=result.passedAnswers
-              teamDetails=updateTeam(4,passedAnswers)
+              passedAnswers=result.passedAnswers;
+              teamDetails=updateTeam(5,passedAnswers);
+              teamDetails.atTreasure=true;
+              let temp=teamDetails.passedAnswers;
+              let treasureTime=temp[0];
+              teamDetails.treasureTime=treasureTime.time;
+              console.log(teamDetails);
               teamHelper.updateTeam(teamId,teamDetails).then((result)=>{
                 res.render('clues/treasure')
               })
