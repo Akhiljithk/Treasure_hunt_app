@@ -16,8 +16,9 @@
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     {{/if}}
-    <div class="col-12 m-auto">
-      <div class="music-playing">
+    <div class="col-12 m-auto d-flex justify-content-center align-items-center">
+     <a id="play" onclick="play()" style="cursor:pointer; font-family: 'Poppins', sans-serif;"><i class="fa fa-play mb-4" style="cursor:pointer; opacity:.75;"></i> Turn game mood on</a>
+      <div onclick="play()" class="music-playing" id="music-animation" style="display: none;">
         <div class="bar bar1" style="height: 15%;"></div>
         <div class="bar bar2" style="height: 75%;"></div>
         <div class="bar bar3" style="height: 25%;"></div>
@@ -45,7 +46,7 @@
       <a href="/player-progress" class="col-12 caption mt-3 mb-0 p-0 text-center" style="color: #ff4655; cursor: pointer;">Treasure distance</a>
   </div>
 </div>
-
+<audio src="/music/Sixthells.mp3" id="audio"></audio>
 <div class="footer mt-0">
   <p>Developed by <a href="https://istegecb.com/" style="color: #ff4655; text-decoration: none;">ISTE SB GECBH</a></p>
 </div>
