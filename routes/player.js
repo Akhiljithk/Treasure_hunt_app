@@ -135,6 +135,23 @@ router.post('/clue', function(req, res) {
           }
         })
         break;
+      case "final answer":
+        teamHelper.getTeamDetails(teamId).then((result)=>{
+          if (isCompletePrevClues(result,4)) {
+            if(result.currentClue==4){
+              res.render('clues/treasure')
+            }else{
+              passedAnswers=result.passedAnswers
+              teamDetails=updateTeam(4,passedAnswers)
+              teamHelper.updateTeam(teamId,teamDetails).then((result)=>{
+                res.render('clues/treasure')
+              })
+            }
+          } else {
+            res.render('player/play-zone',{error:"Malpractice detected!"})
+          }
+        })
+        break;
       default:
         res.render('player/play-zone',{error:"Wrong answer!"})
     }
