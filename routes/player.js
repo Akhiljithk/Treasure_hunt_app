@@ -183,8 +183,7 @@ router.post('/player-progress', function(req, res) {
     if (isTeam) {
       teamHelper.getOneTeamData(teamId).then((result)=>{
         persentage=result.currentClue/4 * 100
-        console.log({persentage});
-        res.render('player/player-progress',{persentage});
+        res.render('player/player-progress',{persentage,teamId});
       })
     } else {
       res.render('player/player-progress',{error:"No such team"});

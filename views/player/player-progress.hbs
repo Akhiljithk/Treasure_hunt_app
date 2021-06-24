@@ -18,7 +18,8 @@
         {{/if}}
         <div class="col-12 playerInput p-3" style="height: 317px;">
             <div class="row justify-content-center">
-                <p class="mt-2 mb-1">Distance to treasure</p>
+                {{#if this.persentage}}
+                <p class="mt-2 mb-1">{{this.teamId}}'s distance to treasure</p>
                     <div class="col-12 mt-0">
                         <div class="progress">
                             <div class="progress-bar bg-danger" role="progressbar" style="width:{{this.persentage}}%"
@@ -26,9 +27,10 @@
                         </div>
                         <i class="fas fa-gem" style="color: #ff4655; position: relative; top: -42px; left:283px;"></i>
                     </div>
+                {{/if}}
                 <form class="row justify-content-center" action="/player-progress" method="POST">
-                    <label class="mt-3 mb-1 p-0" for=""><i class="fa fa-id-badge"></i> TEAM ID</label>
-                    <input type="text" name="teamId" class="playerInputFeild" id="id" required>
+                    <label class="mt-0 mb-1 p-0" for=""><i class="fa fa-id-badge"></i> TEAM ID</label>
+                    <input type="text" name="teamId" class="playerInputFeild" id="id" placeholder="{{this.teamId}}" required>
                     <button type="submit" id="realBtn" onclick="enableLoading()" class="iste-btn mt-4 mb-2">
                         <span class="iste-btn__inner">
                             <span class="iste-btn__slide"></span>
