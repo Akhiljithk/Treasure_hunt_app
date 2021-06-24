@@ -172,9 +172,28 @@ router.get('/track', function(req, res) {
     res.render('admin/playerTracker',{TeamData});
   })
 })
-
 router.get('/player-progress', function(req, res) {
     res.render('player/player-progress');
+})
+
+router.post('/player-progress', function(req, res) {
+  let data = req.body
+  var teamId=data.teamId
+  teamHelper.isTeam(teamId).then((isTeam)=>{
+    if (isTeam) {
+      teamHelper.getOneTeamData(teamId).then((result)=>{
+        persentage=result.currentClue/4 * 100
+        console.log({persentage});
+        res.render('player/player-progress',{persentage});
+      })
+    } else {
+      res.render('player/player-progress',{error:"No such team"});
+    }
+  })
+})
+
+router.get('/*', function(req, res) {
+    res.render('player/exception-page',{layout:false});
 })
 
 module.exports = router;

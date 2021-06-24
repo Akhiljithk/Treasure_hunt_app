@@ -23,10 +23,10 @@
           <input type="text" name="teamId" class="playerInputFeild" id="id" required>
           <label class="mt-3 mb-1 p-0" for=""><i class="fa fa-key"></i> Key</label>
           <input type="text" name="answer" class="playerInputFeild" id="ans" required>
-          <button type="submit" id="realBtn" onclick="enableLoading()" class="iste-btn mt-5 mb-2">
+          <button type="submit" id="iste-btn" onclick="changeBtnText()" class="iste-btn mt-5 mb-2">
             <span class="iste-btn__inner">
               <span class="iste-btn__slide"></span>
-              <span class="iste-btn__content"><i class="fa fa-unlock"></i> Unlock</span>
+              <span id="btn-text" class="iste-btn__content"><i class="fa fa-lock"></i> Unlock</span>
             </span>
           </button>
         </form>
@@ -34,9 +34,10 @@
               href="https://www.instagram.com/istegecb/">Follow</a></span> us for more interesting events</p>
       </div>
     </div>
+      <a href="/player-progress" class="col-12 caption mt-3 mb-0 p-0 text-center" style="color: #ff4655; cursor: pointer;">Treasure distance</a>
   </div>
 </div>
 
-<div class="footer">
+<div class="footer mt-0">
   <p>Developed by <a href="https://istegecb.com/" style="color: #ff4655; text-decoration: none;">ISTE SB GECBH</a></p>
 </div>

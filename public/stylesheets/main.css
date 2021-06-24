@@ -213,6 +213,7 @@ input{
   overflow: visible;
   background: #191834;
   border-radius: 3px;
+  z-index: 1;
 }
 
 .footer {
