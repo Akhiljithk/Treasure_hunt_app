@@ -179,10 +179,10 @@ router.get('/player-progress', function(req, res) {
 router.post('/player-progress', function(req, res) {
   let data = req.body
   var teamId=data.teamId
-  teamHelper.isTeam(teamId).then((isTeam)=>{
-    if (isTeam) {
+  teamHelper.isTeam(teamId).then((response)=>{
+    if (response) {
       teamHelper.getOneTeamData(teamId).then((result)=>{
-        persentage=result.currentClue/4 * 100
+        let persentage=result.currentClue/4 * 100
         res.render('player/player-progress',{persentage,teamId});
       })
     } else {
