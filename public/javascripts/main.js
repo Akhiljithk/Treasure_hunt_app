@@ -12,6 +12,7 @@ function play() {
     if (audio.paused) {
         animation.style.display = "block";
         playBtn.style.display = "none";
+        audio.currentTime = 10
         audio.play();
         $('#play').removeClass('glyphicon-play-circle')
         $('#play').addClass('glyphicon-pause')
