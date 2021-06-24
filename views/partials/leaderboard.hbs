@@ -32,7 +32,7 @@
                 <div class="row justify-content-center px-3">
                   {{#each TeamData}}
                     <div class="player-card mt-5">
-                        <img src="images/avatar.png" alt="Avatar" class="avatar">
+                        <img src="images/{{this.teamId}}.png" alt="Avatar" class="avatar">
                         <h5 class="p-0 m-0" style="font-weight: 600;">#{{this.index}}</h5>
                         <h5 class="p-0 m-0" style="font-weight: 600;">{{this.teamId}}</h5>
                         <h5 class="p-0 m-0 d-none d-sm-block" style="font-weight: 700; color: #ff4655;">AT CLUE {{this.currentClue}}</h5>

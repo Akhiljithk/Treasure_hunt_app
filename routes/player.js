@@ -179,6 +179,7 @@ router.get('/player-progress', function(req, res) {
 router.post('/player-progress', function(req, res) {
   let data = req.body
   var teamId=data.teamId
+  teamId=teamId.toLowerCase();
   teamHelper.isTeam(teamId).then((response)=>{
     if (response) {
       teamHelper.getOneTeamData(teamId).then((result)=>{
