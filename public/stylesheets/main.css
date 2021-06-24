@@ -254,3 +254,187 @@ input{
   color: rgb(255, 255, 255);
   background: #ff4655;
 }
+
+/* music animation */
+.keyframes 0% {
+	height: 100%;
+}
+
+.keyframes 50% {
+	height: 25%;
+}
+
+.keyframes 75% {
+	height: 75%;
+}
+
+.keyframes 100% {
+	height: 15%;
+}
+
+.keyframes2 0% {
+	height: 15%;
+}
+
+.keyframes2 50% {
+	height: 75%;
+}
+
+.keyframes2 75% {
+	height: 25%;
+}
+
+.keyframes2 100% {
+	height: 100%;
+}
+
+@-webkit-keyframes barEQ {
+	0% {
+		height: 100%;
+	}
+
+	50% {
+		height: 25%;
+	}
+
+	75% {
+		height: 75%;
+	}
+
+	100% {
+		height: 15%;
+	}
+}
+
+@keyframes barEQ {
+	0% {
+		height: 100%;
+	}
+
+	50% {
+		height: 25%;
+	}
+
+	75% {
+		height: 75%;
+	}
+
+	100% {
+		height: 15%;
+	}
+}
+
+@-webkit-keyframes barEQ2 {
+	0% {
+		height: 15%;
+	}
+
+	50% {
+		height: 75%;
+	}
+
+	75% {
+		height: 25%;
+	}
+
+	100% {
+		height: 100%;
+	}
+}
+
+@keyframes barEQ2 {
+	0% {
+		height: 15%;
+	}
+
+	50% {
+		height: 75%;
+	}
+
+	75% {
+		height: 25%;
+	}
+
+	100% {
+		height: 100%;
+	}
+}
+
+.music-playing {
+	position: relative;
+	display: block;
+	width: 26px;
+	height: 26px;
+	margin: 0 auto 30px auto;
+}
+
+.bar {
+	position: absolute;
+	height: 100%;
+	width: 15%;
+	bottom: 0;
+	float: left;
+	background-color: #fff;
+}
+
+.bar.bar1 {
+	left: 0;
+	-webkit-animation: barEQ 900ms alternate infinite linear;
+	animation: barEQ 900ms alternate infinite linear;
+}
+
+.bar.bar2 {
+	left: 28.33333333%;
+	-webkit-animation: barEQ2 900ms alternate infinite linear;
+	animation: barEQ2 900ms alternate infinite linear;
+	-webkit-animation-delay: -900ms;
+	animation-delay: -900ms;
+}
+
+.bar.bar3 {
+	left: 56.66666667%;
+	-webkit-animation: barEQ 900ms alternate infinite linear;
+	animation: barEQ 900ms alternate infinite linear;
+	-webkit-animation-duration: 675ms;
+	animation-duration: 675ms;
+	-webkit-animation-delay: -450ms;
+	animation-delay: -450ms;
+}
+
+.bar.bar4 {
+	left: 85%;
+	-webkit-animation: barEQ2 900ms alternate infinite linear;
+	animation: barEQ2 900ms alternate infinite linear;
+	-webkit-animation-duration: 810ms;
+	animation-duration: 810ms;
+	-webkit-animation-delay: -270ms;
+	animation-delay: -270ms;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+	display: inline-block;
+	font-family: 'icons';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	vertical-align: middle;
+  /* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-logo:before {
+	content: "\e60a";
+}
+
+.icon-logo {
+	display: block;
+	margin: 0 auto;
+	font-size: 28px;
+	color: #fff;
+}
+/* music aimation ends here */
