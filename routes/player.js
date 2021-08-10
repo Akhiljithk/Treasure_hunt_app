@@ -33,7 +33,8 @@ function createTeam(teamId){
   // array for track user
   passedAnswers=[]
   datePassed = new Date();
-  let time=datePassed.getUTCHours() + ":" + datePassed.getUTCMinutes() + ":" + datePassed.getUTCSeconds();
+ // let time=datePassed.getUTCHours() + ":" + datePassed.getUTCMinutes() + ":" + datePassed.getUTCSeconds();
+  time = new Date(datePassed).toLocaleString(undefined, {timeZone: 'Asia/Kolkata'});
   passedAnswers[0]={
     time: time,
     clueNo: 1,
@@ -46,7 +47,8 @@ function updateTeam(clueNo,passedAnswers){
   let teamDetails={}
   teamDetails.currentClue=clueNo;
   datePassed = new Date();
-  let time=datePassed.getUTCHours() + ":" + datePassed.getUTCMinutes() + ":" + datePassed.getUTCSeconds();
+  //let time=datePassed.getUTCHours() + ":" + datePassed.getUTCMinutes() + ":" + datePassed.getUTCSeconds();
+  time = new Date(datePassed).toLocaleString(undefined, {timeZone: 'Asia/Kolkata'});
   trackingData={
     time: time,
     clueNo: clueNo-1,
