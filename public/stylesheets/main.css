@@ -256,6 +256,7 @@ input{
 }
 
 /* music animation */
+/* ee error solve cheyan ariyam egil cheytho */
 .keyframes 0% {
 	height: 100%;
 }
@@ -415,7 +416,8 @@ input{
 [class*=" icon-"] {
 	display: inline-block;
 	font-family: 'icons';
-	speak: none;
+  /* speak is css property :| idk but it is.. it shd be :) */
+	speak: none; 
 	font-style: normal;
 	font-weight: normal;
 	font-variant: normal;

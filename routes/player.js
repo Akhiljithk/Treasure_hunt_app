@@ -89,28 +89,28 @@ router.post('/clue', function(req, res) {
     var answer=data.answer
     answer=answer.toLowerCase();
     switch(answer) {
-      case "x":
+      case "google":
         teamHelper.isTeam(teamId).then((result)=>{
           if(result){
-            res.render('clues/TW1Qzgzlx0h',{msg:"You've already completed clue 1"})
+            res.render('clues/clue2',{msg:"You've already completed clue 1"})
           }else{
             teamDetails=createTeam(teamId)
             teamHelper.addTeam(teamDetails).then((data)=>{
-              res.render('clues/TW1Qzgzlx0h')
+              res.render('clues/clue2')
             })
           }
         })
         break;
-      case "y":
+      case "safari":
         teamHelper.getTeamDetails(teamId).then((result)=>{
           if (isCompletePrevClues(result,3)) {
             if(result.currentClue==3){
-              res.render('clues/TW1Qzgzlx0',{msg:"Already completed clue 2"})
+              res.render('clues/clue3',{msg:"Already completed"})
             }else{
               passedAnswers=result.passedAnswers
               teamDetails=updateTeam(3,passedAnswers)
               teamHelper.updateTeam(teamId,teamDetails).then((result)=>{
-                res.render('clues/TW1Qzgzlx0')
+                res.render('clues/clue3')
               })
             }
           } else {
@@ -118,16 +118,16 @@ router.post('/clue', function(req, res) {
           }
         })
         break;
-      case "x y z":
+      case "siri":
         teamHelper.getTeamDetails(teamId).then((result)=>{
           if (isCompletePrevClues(result,4)) {
             if(result.currentClue==4){
-              res.render('clues/TW1Qzgzlx0rt',{msg:"Already completed clue 3"})
+              res.render('clues/clue4',{msg:"Already completed"})
             }else{
               passedAnswers=result.passedAnswers
               teamDetails=updateTeam(4,passedAnswers)
               teamHelper.updateTeam(teamId,teamDetails).then((result)=>{
-                res.render('clues/TW1Qzgzlx0rt')
+                res.render('clues/clue4')
               })
             }
           } else {
@@ -135,14 +135,99 @@ router.post('/clue', function(req, res) {
           }
         })
         break;
-      case "final answer":
+      case "steve jobs":
         teamHelper.getTeamDetails(teamId).then((result)=>{
           if (isCompletePrevClues(result,5)) {
             if(result.currentClue==5){
+              res.render('clues/clue5',{msg:"Already completed"})
+            }else{
+              passedAnswers=result.passedAnswers
+              teamDetails=updateTeam(5,passedAnswers)
+              teamHelper.updateTeam(teamId,teamDetails).then((result)=>{
+                res.render('clues/clue5')
+              })
+            }
+          } else {
+            res.render('player/play-zone',{error:"Malpractice detected!"})
+          }
+        })
+        break;
+      case "harvard university":
+        teamHelper.getTeamDetails(teamId).then((result)=>{
+          if (isCompletePrevClues(result,6)) {
+            if(result.currentClue==6){
+              res.render('clues/clue6',{msg:"Already completed"})
+            }else{
+              passedAnswers=result.passedAnswers
+              teamDetails=updateTeam(6,passedAnswers)
+              teamHelper.updateTeam(teamId,teamDetails).then((result)=>{
+                res.render('clues/clue6')
+              })
+            }
+          } else {
+            res.render('player/play-zone',{error:"Malpractice detected!"})
+          }
+        })
+        break;
+      case "russia flag":
+        teamHelper.getTeamDetails(teamId).then((result)=>{
+          if (isCompletePrevClues(result,7)) {
+            if(result.currentClue==7){
+              res.render('clues/clue7',{msg:"Already completed"})
+            }else{
+              passedAnswers=result.passedAnswers
+              teamDetails=updateTeam(7,passedAnswers)
+              teamHelper.updateTeam(teamId,teamDetails).then((result)=>{
+                res.render('clues/clue7')
+              })
+            }
+          } else {
+            res.render('player/play-zone',{error:"Malpractice detected!"})
+          }
+        })
+        break;
+      case "lei jun":
+        teamHelper.getTeamDetails(teamId).then((result)=>{
+          if (isCompletePrevClues(result,8)) {
+            if(result.currentClue==8){
+              res.render('clues/clue8',{msg:"Already completed"})
+            }else{
+              passedAnswers=result.passedAnswers
+              teamDetails=updateTeam(8,passedAnswers)
+              teamHelper.updateTeam(teamId,teamDetails).then((result)=>{
+                res.render('clues/clue8')
+              })
+            }
+          } else {
+            res.render('player/play-zone',{error:"Malpractice detected!"})
+          }
+        })
+        break;
+      case "wright brothers":
+        teamHelper.getTeamDetails(teamId).then((result)=>{
+          if (isCompletePrevClues(result,9)) {
+            if(result.currentClue==9){
+              res.render('clues/clue9',{msg:"Already completed"})
+            }else{
+              passedAnswers=result.passedAnswers
+              teamDetails=updateTeam(9,passedAnswers)
+              teamHelper.updateTeam(teamId,teamDetails).then((result)=>{
+                res.render('clues/clue9')
+              })
+            }
+          } else {
+            res.render('player/play-zone',{error:"Malpractice detected!"})
+          }
+        })
+        break;
+      case "alexander graham bell":
+        teamHelper.getTeamDetails(teamId).then((result)=>{
+          if (isCompletePrevClues(result,10)) {
+            if(result.currentClue==10){
               res.render('clues/treasure')
             }else{
               passedAnswers=result.passedAnswers;
-              teamDetails=updateTeam(5,passedAnswers);
+              teamDetails=updateTeam(10,passedAnswers);
               teamDetails.atTreasure=true;
               let temp=teamDetails.passedAnswers;
               let treasureTime=temp[0];
