@@ -152,7 +152,7 @@ router.post('/clue', function(req, res) {
           }
         })
         break;
-      case "harvard university":
+      case "russia flag":
         teamHelper.getTeamDetails(teamId).then((result)=>{
           if (isCompletePrevClues(result,6)) {
             if(result.currentClue==6){
@@ -169,7 +169,7 @@ router.post('/clue', function(req, res) {
           }
         })
         break;
-      case "russia flag":
+      case "harvard university":
         teamHelper.getTeamDetails(teamId).then((result)=>{
           if (isCompletePrevClues(result,7)) {
             if(result.currentClue==7){
