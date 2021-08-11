@@ -172,7 +172,7 @@ router.post('/clue', function(req, res) {
           }
         })
         break;
-      case "russia flag":
+      case "russia":
         teamHelper.getTeamDetails(teamId).then((result)=>{
           if (isCompletePrevClues(result,6)) {
             if(result.currentClue==6){
@@ -310,7 +310,7 @@ router.post('/player-progress', function(req, res) {
   teamHelper.isTeam(teamId).then((response)=>{
     if (response) {
       teamHelper.getOneTeamData(teamId).then((result)=>{
-        let persentage=result.currentClue/4 * 100
+        let persentage=result.currentClue/10 * 100
         res.render('player/player-progress',{persentage,teamId});
       })
     } else {
