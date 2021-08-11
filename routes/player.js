@@ -77,6 +77,8 @@ function updateTeam(clueNo,passedAnswers){
 }
 
 function isCompletePrevClues(result,thisClueNo) {
+  console.log(result);
+  console.log(thisClueNo);
   if (result===null) {
     return false
   } else {
@@ -173,6 +175,7 @@ router.post('/clue', function(req, res) {
         })
         break;
       case "harvard university":
+        console.log('stev jobs case: ',data);
         teamHelper.getTeamDetails(teamId).then((result)=>{
           if (isCompletePrevClues(result,6)) {
             if(result.currentClue==6){
