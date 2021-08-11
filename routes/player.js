@@ -112,7 +112,7 @@ router.post('/clue', function(req, res) {
       case "google":
         teamHelper.isTeam(teamId).then((result)=>{
           if(result){
-            res.render('clues/clue2',{msg:"You've already completed clue 1"})
+            res.render('clues/clue2',{msg:"Already completed"})
           }else{
             teamDetails=createTeam(teamId)
             teamHelper.addTeam(teamDetails).then((data)=>{
@@ -172,7 +172,7 @@ router.post('/clue', function(req, res) {
           }
         })
         break;
-      case "russia":
+      case "harvard university":
         teamHelper.getTeamDetails(teamId).then((result)=>{
           if (isCompletePrevClues(result,6)) {
             if(result.currentClue==6){
@@ -189,7 +189,7 @@ router.post('/clue', function(req, res) {
           }
         })
         break;
-      case "harvard university":
+      case "russia":
         teamHelper.getTeamDetails(teamId).then((result)=>{
           if (isCompletePrevClues(result,7)) {
             if(result.currentClue==7){
