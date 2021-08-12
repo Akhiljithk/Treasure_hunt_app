@@ -6,6 +6,7 @@ var logger = require('morgan');
 const Handlebars = require('handlebars');
 var hbs = require('express-handlebars');
 const db = require('./config/dbConnection');
+var session = require('express-session');
 
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
 
@@ -34,6 +35,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+const oneDay = 1000 * 60 * 60 * 24;
+app.use(session({
+    secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
+    saveUninitialized:true,
+    cookie: { maxAge: oneDay },
+    resave: false 
+}));
 
 //data base connection
 db.connect(function(err){

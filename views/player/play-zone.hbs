@@ -29,7 +29,11 @@
       <div class="row justify-content-center">
         <form class="row justify-content-center" action="/clue" method="POST">
           <label class="mt-3 mb-1 p-0" for=""><i class="fa fa-id-badge"></i> TEAM ID</label>
+          {{#if teamId}}
+          <input type="text" value="{{teamId}}" name="teamId" class="playerInputFeild" id="id" required>
+          {{else}}
           <input type="text" name="teamId" class="playerInputFeild" id="id" required>
+          {{/if}}
           <label class="mt-3 mb-1 p-0" for=""><i class="fa fa-key"></i> Key</label>
           <input type="text" name="answer" class="playerInputFeild" id="ans" required>
           <button type="submit" id="iste-btn" onclick="changeBtnText()" class="iste-btn mt-5 mb-2">
