@@ -6,9 +6,10 @@ const state={
 
 module.exports.connect=function(done){
     const url = 'mongodb+srv://TreasureHunt:TreasureHuntPassword@cluster0.psrtx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-    //const url = 'mongodb://localhost:27017';
+    // const url = 'mongodb://localhost:27017';
+    // const url = 'mongodb://0.0.0.0:27017/';
     const dbName = 'treasurehunt'; 
- 
+ //mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false
     return new Promise(async(resolve,reject)=>{
         await mongoClient.connect(url,{useNewUrlParser: true,useUnifiedTopology: true },(err,data)=>{
             if(err) return done(err)
