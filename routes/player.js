@@ -135,7 +135,7 @@ router.post('/clue', function(req, res) {
     var answer=data.answer
     answer=answer.toLowerCase();
     switch(answer) {
-      case "google":
+      case "dr e sreedharan":
         teamHelper.isTeam(teamId).then((result)=>{
           if(result){
             res.render('clues/clue2',{msg:"Already completed"})
@@ -147,42 +147,78 @@ router.post('/clue', function(req, res) {
           }
         })
         break;
-      case "safari":
+      case "e sreedharan":
+        teamHelper.isTeam(teamId).then((result)=>{
+          if(result){
+            res.render('clues/clue2',{msg:"Already completed"})
+          }else{
+            teamDetails=createTeam(teamId)
+            teamHelper.addTeam(teamDetails).then((data)=>{
+              res.render('clues/clue2')
+            })
+          }
+        })
+        break;
+      case "edwin howard armstrong":
         nextPageName = 'clue3'
         finalCheck(3,teamId,nextPageName,res)
         break;
-      case "siri":
+      case "edwin armstrong":
+        nextPageName = 'clue3'
+        finalCheck(3,teamId,nextPageName,res)
+        break;
+      case "howard armstrong":
+        nextPageName = 'clue3'
+        finalCheck(3,teamId,nextPageName,res)
+        break;
+      case "evan spiegel":
         nextPageName = 'clue4'
         finalCheck(4,teamId,nextPageName,res)
         break;
-      case "steve jobs":
+      case "flutter":
         nextPageName = 'clue5'
         finalCheck(5,teamId,nextPageName,res)
         break;
-      case "harvard university":
+      case "alfieri maserati":
         nextPageName = 'clue6'
         finalCheck(6,teamId,nextPageName,res)
         break;
-      case "russia":
+      case "laika":
         nextPageName = 'clue7'
         finalCheck(7,teamId,nextPageName,res)
         break;
-      case "lei jun":
+      case "supercalifragilisticexpialidocious":
         nextPageName = 'clue8'
         finalCheck(8,teamId,nextPageName,res)
         break;
-      case "wright brothers":
+      case "nike":
         nextPageName = 'clue9'
         finalCheck(9,teamId,nextPageName,res)
         break;
-      case "alexander graham bell":
+      case "winged nike":
+        nextPageName = 'clue9'
+        finalCheck(9,teamId,nextPageName,res)
+        break;
+      case "goddess nike":
+        nextPageName = 'clue9'
+        finalCheck(9,teamId,nextPageName,res)
+        break;
+      case "nirbhay":
+        nextPageName = 'clue10'
+        finalCheck(10,teamId,nextPageName,res)
+        break;
+      case "nirbhay missile":
+        nextPageName = 'clue10'
+        finalCheck(10,teamId,nextPageName,res)
+        break;
+      case "grand canyon":
         teamHelper.getTeamDetails(teamId).then((result)=>{
-          if (isCompletePrevClues(result,10)) {
-            if(result.currentClue==10 || result.currentClue>10){
+          if (isCompletePrevClues(result,11)) {
+            if(result.currentClue==11 || result.currentClue>11){
               res.render('clues/treasure')
             }else{
               passedAnswers=result.passedAnswers;
-              teamDetails=updateTeam(10,passedAnswers);
+              teamDetails=updateTeam(11,passedAnswers);
               teamDetails.atTreasure=true;
               let temp=teamDetails.passedAnswers;
               let treasureTime=temp[0];
@@ -208,20 +244,20 @@ router.post('/clue', function(req, res) {
   }
 });
 
-router.get('/leaderboard', function(req, res) {
-  teamHelper.getAllTeamData().then((TeamData)=>{
-    TeamData.sort((a,b)=>{
-      return a.currentClue - b.currentClue
-     })
-     TeamData.reverse();
-     var i = 1
-     TeamData.forEach(element => {
-      element.index=i
-      i++;
-    });
-    res.render('partials/leaderboard',{layout: false,TeamData});
-  })
-});
+// router.get('/leaderboard', function(req, res) {
+//   teamHelper.getAllTeamData().then((TeamData)=>{
+//     TeamData.sort((a,b)=>{
+//       return a.currentClue - b.currentClue
+//      })
+//      TeamData.reverse();
+//      var i = 1
+//      TeamData.forEach(element => {
+//       element.index=i
+//       i++;
+//     });
+//     res.render('partials/leaderboard',{layout: false,TeamData});
+//   })
+// });
 
 router.get('/track', function(req, res) {
   teamHelper.getAllTeamData().then((TeamData)=>{
@@ -249,8 +285,9 @@ router.post('/player-progress', function(req, res) {
   teamHelper.isTeam(teamId).then((response)=>{
     if (response) {
       teamHelper.getOneTeamData(teamId).then((result)=>{
+        let currentClue = result.currentClue
         let persentage=result.currentClue/10 * 100
-        res.render('player/player-progress',{persentage,teamId});
+        res.render('player/player-progress',{persentage,teamId,currentClue});
       })
     } else {
       res.render('player/player-progress',{error:"No such team"});
