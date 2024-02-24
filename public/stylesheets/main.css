@@ -256,39 +256,44 @@ input{
 }
 
 /* music animation */
-/* ee error solve cheyan ariyam egil cheytho */
-.keyframes 0% {
-	height: 100%;
+/* ee error solve cheyan ariyam egil cheytho 
+njan fix cheythu (underemployed)
+*/
+@keyframes keyframes {
+  0% {
+    height: 100%;
+  }
+
+  50% {
+    height: 25%;
+  }
+
+  75% {
+    height: 75%;
+  }
+
+  100% {
+    height: 15%;
+  }
 }
 
-.keyframes 50% {
-	height: 25%;
-}
+@keyframes keyframes2 {
+  0% {
+    height: 15%;
+  }
 
-.keyframes 75% {
-	height: 75%;
-}
+  50% {
+    height: 75%;
+  }
 
-.keyframes 100% {
-	height: 15%;
-}
+  75% {
+    height: 25%;
+  }
 
-.keyframes2 0% {
-	height: 15%;
+  100% {
+    height: 100%;
+  }
 }
-
-.keyframes2 50% {
-	height: 75%;
-}
-
-.keyframes2 75% {
-	height: 25%;
-}
-
-.keyframes2 100% {
-	height: 100%;
-}
-
 @-webkit-keyframes barEQ {
 	0% {
 		height: 100%;
@@ -440,3 +445,27 @@ input{
 	color: #fff;
 }
 /* music aimation ends here */
+
+@keyframes box-move {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(10px);
+  }
+  0% {
+    transform: translateY(0);
+  }
+
+  
+} 
+.move {
+  animation: box-move 1s infinite alternate-reverse;
+  /* padding-top: 3px; */
+  padding-bottom: 3px;
+}
+
+
+
+
+
