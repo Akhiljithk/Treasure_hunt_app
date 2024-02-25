@@ -320,7 +320,6 @@ router.post("/clue", function (req, res) {
 //         return b.currentClue - a.currentClue;
 //       }
 //     });
-
 //     var i = 1;
 //     TeamData.forEach((element) => {
 //       element.index = i;
