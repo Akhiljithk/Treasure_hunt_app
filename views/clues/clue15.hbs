@@ -1,0 +1,41 @@
+<div class="header container mt-4 ">
+  <div class="row justify-content-center text-center">
+    <img class="col-12 iste-logo img-fluid d-block" src="images/ISTE logo White.png" alt="ISTE">
+    <h3 class="col-12">INDIAN SOCIETY FOR <br>
+      TECHNICAL EDUCATION</h3>
+    <h1 class="col-12 interitus-text mt-3">{{title}}</h1>
+    <p class="col-12 caption">Let's Brainstorm and hunt all the way</p>
+  </div>
+</div>
+
+<div class="container mt-4 mb-4">
+  <div class="row justify-content-center p-2">
+    <div class="col-12 playerInput-clue p-3" style="background: transparent;">
+      <div class="row justify-content-center align-items-center">
+        {{#if msg}}
+        <div class="col-12 alert alert-success alert-dismissible fade show" style="width: 334px;" role="alert">
+          <strong>{{msg}}</strong>
+          <button type="button" class="btn-close" style="color: #ffff;" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {{/if}}
+        <p class="text-center pt-1"><span style="font-size: 25px; color: #ff4655;">Question No.15</span></p>
+        <p class="text-center pt-1" style="font-size: 22px;">
+            Identify this hotspot of GECBH<br>
+        
+        </p>
+        <p class="text-center pt-1" style="font-size: 18px;">
+            The only teenager who never graduates from our college   
+        </p>
+        {{!-- <img src="https://photos2.insidercdn.com/safari-090225-1.png" alt="img"> --}}
+        <form class="d-flex justify-content-center align-items-center" action="/">
+          <button type="submit" class="iste-btn mt-5 mb-4" style="width: 100%;">
+            <span class="iste-btn__inner">
+              <span class="iste-btn__slide"></span>
+              <span class="iste-btn__content">Go back to play Zone</span>
+            </span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
