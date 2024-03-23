@@ -2,43 +2,20 @@ var express = require("express");
 const session = require("express-session");
 var router = express.Router();
 var teamHelper = require("../helpers/team-helper");
+
 // edited by Underemployed 17-02-2024
 function verifyTeam(Id) {
   var isTeamId = false;
-  switch (Id) {
-    case "team01":
-    case "team02":
-    case "team03":
-    case "team04":
-    case "team05":
-    case "team06":
-    case "team07":
-    case "team08":
-    case "team09":
-    case "team10":
-    case "team11":
-    case "team12":
-    case "team13":
-    case "team14":
-    case "team15":
-    case "team16":
-    case "team17":
-    case "team18":
-    case "team19":
-    case "team20":
-    case "team21":
-    case "team22":
-    case "team23":
-    case "team24":
-    case "team25":
+  for (var i = 1; i <= 25; i++) {
+    var teamId = "team" + (i > 9 ? i : "0" + i);
+    if (Id === teamId) {
       isTeamId = true;
       break;
-    default:
-      isTeamId = false;
-      break;
+    }
   }
   return isTeamId;
 }
+
 function createTeam(teamId) {
   let teamDetails = {};
   //teamId
@@ -307,28 +284,29 @@ router.post("/clue", function (req, res) {
 });
 // leader board page(UNCOMMENT IF U WANT TO USE)
 // sorted by treasure time and clue (by underemployed 24-02-2024)
-// router.get("/leaderboard", function (req, res) {
-//   teamHelper.getAllTeamData().then((TeamData) => {
-//     TeamData.sort((a, b) => {
-//       if (a.treasureTime && b.treasureTime) {
-//         return new Date(a.treasureTime) - new Date(b.treasureTime);
-//       } else if (a.treasureTime) {
-//         return -1;
-//       } else if (b.treasureTime) {
-//         return 1;
-//       } else {
-//         return b.currentClue - a.currentClue;
-//       }
-//     });
-//     var i = 1;
-//     TeamData.forEach((element) => {
-//       element.index = i;
-//       i++;
-//       element.atTreasure; // at treasure text
-//     });
-//     res.render("partials/leaderboard", { layout: false, TeamData });
-//   });
-// });
+router.get("/leaderboard", function (req, res) {
+  teamHelper.getAllTeamData().then((TeamData) => {
+    TeamData.sort((a, b) => {
+      if (a.treasureTime && b.treasureTime) {
+        return new Date(a.treasureTime) - new Date(b.treasureTime);
+      } else if (a.treasureTime) {
+        return -1;
+      } else if (b.treasureTime) {
+        return 1;
+      } else {
+        return b.currentClue - a.currentClue;
+      }
+    });
+
+    var i = 1;
+    TeamData.forEach((element) => {
+      element.index = i;
+      i++;
+      element.atTreasure; // at treasure text
+    });
+    res.render("partials/leaderboard", { layout: false, TeamData });
+  });
+});
 router.get("/track", function (req, res) {
   teamHelper.getAllTeamData().then((TeamData) => {
     TeamData.sort((a, b) => {
